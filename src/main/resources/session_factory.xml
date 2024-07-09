@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/chikitinesbd</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+      <property name="connection.username">root</property>
+      <mapping class="com.nvegas.ingwebapi.models.entities.BoletaEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.BoletaDetalleEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.CdpEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.ClienteEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.DetalleNotaIngresoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.DetalleNotaSalidaEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.DetallePedidoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.DetalleVentaEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.FacturaEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.FacturaDetalleEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.JefeAlmacenEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.JefeComprasEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.JuridicoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.NaturalEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.NotaIngresoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.NotaSalidaEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.PagoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.PedidoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.ProductoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.ProveedorEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.RequerimientoEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.RequerimientoDetalleEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.UsuariosEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.VendedorEntity"/>
+      <mapping class="com.nvegas.ingwebapi.models.entities.VentaEntity"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
