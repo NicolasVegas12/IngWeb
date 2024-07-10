@@ -18,9 +18,7 @@ public class FacturaEntity {
     @Basic
     @Column(name = "fecha", nullable = false)
     private Date fecha;
-    @Basic
-    @Column(name = "idFacturaDetalle", nullable = false)
-    private int idFacturaDetalle;
+
     @OneToMany(mappedBy = "facturaByIdFactura")
     private Collection<CdpEntity> cdpsByIdFactura;
     @ManyToOne
@@ -51,13 +49,6 @@ public class FacturaEntity {
         this.fecha = fecha;
     }
 
-    public int getIdFacturaDetalle() {
-        return idFacturaDetalle;
-    }
-
-    public void setIdFacturaDetalle(int idFacturaDetalle) {
-        this.idFacturaDetalle = idFacturaDetalle;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,7 +58,6 @@ public class FacturaEntity {
         FacturaEntity that = (FacturaEntity) o;
 
         if (idFactura != that.idFactura) return false;
-        if (idFacturaDetalle != that.idFacturaDetalle) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
         if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
 
@@ -79,7 +69,6 @@ public class FacturaEntity {
         int result = idFactura;
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
-        result = 31 * result + idFacturaDetalle;
         return result;
     }
 

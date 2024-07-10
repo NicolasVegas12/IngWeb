@@ -12,12 +12,7 @@ public class DetalleVentaEntity {
     @Basic
     @Column(name = "monto", nullable = false, precision = 2)
     private double monto;
-    @Basic
-    @Column(name = "idVenta", nullable = false)
-    private int idVenta;
-    @Basic
-    @Column(name = "idProducto", nullable = false)
-    private int idProducto;
+
     @Basic
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
@@ -44,21 +39,7 @@ public class DetalleVentaEntity {
         this.monto = monto;
     }
 
-    public int getIdVenta() {
-        return idVenta;
-    }
 
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
 
     public int getCantidad() {
         return cantidad;
@@ -77,8 +58,6 @@ public class DetalleVentaEntity {
 
         if (idDetalleVenta != that.idDetalleVenta) return false;
         if (Double.compare(that.monto, monto) != 0) return false;
-        if (idVenta != that.idVenta) return false;
-        if (idProducto != that.idProducto) return false;
         if (cantidad != that.cantidad) return false;
 
         return true;
@@ -91,8 +70,6 @@ public class DetalleVentaEntity {
         result = idDetalleVenta;
         temp = Double.doubleToLongBits(monto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + idVenta;
-        result = 31 * result + idProducto;
         result = 31 * result + cantidad;
         return result;
     }

@@ -18,15 +18,9 @@ public class UsuariosEntity {
     @Basic
     @Column(name = "contrasena", nullable = false, length = 50)
     private String contrasena;
-    @Basic
-    @Column(name = "idJefeAlmacen", nullable = true)
-    private Integer idJefeAlmacen;
-    @Basic
-    @Column(name = "idJefeCompras", nullable = true)
-    private Integer idJefeCompras;
-    @Basic
-    @Column(name = "idVendedor", nullable = true)
-    private Integer idVendedor;
+
+
+
     @ManyToOne
     @JoinColumn(name = "idJefeAlmacen", referencedColumnName = "idJefeAlmacen")
     private JefeAlmacenEntity jefeAlmacenByIdJefeAlmacen;
@@ -69,29 +63,7 @@ public class UsuariosEntity {
         this.contrasena = contrasena;
     }
 
-    public Integer getIdJefeAlmacen() {
-        return idJefeAlmacen;
-    }
 
-    public void setIdJefeAlmacen(Integer idJefeAlmacen) {
-        this.idJefeAlmacen = idJefeAlmacen;
-    }
-
-    public Integer getIdJefeCompras() {
-        return idJefeCompras;
-    }
-
-    public void setIdJefeCompras(Integer idJefeCompras) {
-        this.idJefeCompras = idJefeCompras;
-    }
-
-    public Integer getIdVendedor() {
-        return idVendedor;
-    }
-
-    public void setIdVendedor(Integer idVendedor) {
-        this.idVendedor = idVendedor;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -105,11 +77,6 @@ public class UsuariosEntity {
             return false;
         if (correo != null ? !correo.equals(that.correo) : that.correo != null) return false;
         if (contrasena != null ? !contrasena.equals(that.contrasena) : that.contrasena != null) return false;
-        if (idJefeAlmacen != null ? !idJefeAlmacen.equals(that.idJefeAlmacen) : that.idJefeAlmacen != null)
-            return false;
-        if (idJefeCompras != null ? !idJefeCompras.equals(that.idJefeCompras) : that.idJefeCompras != null)
-            return false;
-        if (idVendedor != null ? !idVendedor.equals(that.idVendedor) : that.idVendedor != null) return false;
 
         return true;
     }
@@ -120,9 +87,6 @@ public class UsuariosEntity {
         result = 31 * result + (nombreUsuario != null ? nombreUsuario.hashCode() : 0);
         result = 31 * result + (correo != null ? correo.hashCode() : 0);
         result = 31 * result + (contrasena != null ? contrasena.hashCode() : 0);
-        result = 31 * result + (idJefeAlmacen != null ? idJefeAlmacen.hashCode() : 0);
-        result = 31 * result + (idJefeCompras != null ? idJefeCompras.hashCode() : 0);
-        result = 31 * result + (idVendedor != null ? idVendedor.hashCode() : 0);
         return result;
     }
 

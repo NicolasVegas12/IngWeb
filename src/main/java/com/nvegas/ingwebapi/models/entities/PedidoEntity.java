@@ -15,18 +15,7 @@ public class PedidoEntity {
     @Basic
     @Column(name = "fecha", nullable = false)
     private Date fecha;
-    @Basic
-    @Column(name = "idProveedor", nullable = false)
-    private int idProveedor;
-    @Basic
-    @Column(name = "idVendedor", nullable = false)
-    private int idVendedor;
-    @Basic
-    @Column(name = "idJefeCompras", nullable = false)
-    private int idJefeCompras;
-    @Basic
-    @Column(name = "idCliente", nullable = false)
-    private int idCliente;
+
     @OneToMany(mappedBy = "pedidoByPedidoIdPedido")
     private Collection<DetallePedidoEntity> detallePedidosByIdPedido;
     @ManyToOne
@@ -58,37 +47,7 @@ public class PedidoEntity {
         this.fecha = fecha;
     }
 
-    public int getIdProveedor() {
-        return idProveedor;
-    }
 
-    public void setIdProveedor(int idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-
-    public int getIdVendedor() {
-        return idVendedor;
-    }
-
-    public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
-    }
-
-    public int getIdJefeCompras() {
-        return idJefeCompras;
-    }
-
-    public void setIdJefeCompras(int idJefeCompras) {
-        this.idJefeCompras = idJefeCompras;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -98,10 +57,6 @@ public class PedidoEntity {
         PedidoEntity that = (PedidoEntity) o;
 
         if (idPedido != that.idPedido) return false;
-        if (idProveedor != that.idProveedor) return false;
-        if (idVendedor != that.idVendedor) return false;
-        if (idJefeCompras != that.idJefeCompras) return false;
-        if (idCliente != that.idCliente) return false;
         if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
 
         return true;
@@ -111,10 +66,6 @@ public class PedidoEntity {
     public int hashCode() {
         int result = idPedido;
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
-        result = 31 * result + idProveedor;
-        result = 31 * result + idVendedor;
-        result = 31 * result + idJefeCompras;
-        result = 31 * result + idCliente;
         return result;
     }
 

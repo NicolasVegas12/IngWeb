@@ -14,9 +14,7 @@ public class FacturaDetalleEntity {
     @Basic
     @Column(name = "monto", nullable = false, precision = 2)
     private double monto;
-    @Basic
-    @Column(name = "idProducto", nullable = false)
-    private int idProducto;
+
     @Basic
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
@@ -42,13 +40,6 @@ public class FacturaDetalleEntity {
         this.monto = monto;
     }
 
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
 
     public int getCantidad() {
         return cantidad;
@@ -67,7 +58,6 @@ public class FacturaDetalleEntity {
 
         if (idFacturaDetalle != that.idFacturaDetalle) return false;
         if (Double.compare(that.monto, monto) != 0) return false;
-        if (idProducto != that.idProducto) return false;
         if (cantidad != that.cantidad) return false;
 
         return true;
@@ -80,7 +70,6 @@ public class FacturaDetalleEntity {
         result = idFacturaDetalle;
         temp = Double.doubleToLongBits(monto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + idProducto;
         result = 31 * result + cantidad;
         return result;
     }

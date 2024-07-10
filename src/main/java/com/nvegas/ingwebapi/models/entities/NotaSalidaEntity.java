@@ -18,9 +18,7 @@ public class NotaSalidaEntity {
     @Basic
     @Column(name = "fechaSalida", nullable = false)
     private Date fechaSalida;
-    @Basic
-    @Column(name = "idJefeAlmacen", nullable = false)
-    private int idJefeAlmacen;
+
     @OneToMany(mappedBy = "notaSalidaByIdNotaSalida")
     private Collection<DetalleNotaSalidaEntity> detalleNotaSalidasByIdNotaSalida;
     @ManyToOne
@@ -51,13 +49,7 @@ public class NotaSalidaEntity {
         this.fechaSalida = fechaSalida;
     }
 
-    public int getIdJefeAlmacen() {
-        return idJefeAlmacen;
-    }
 
-    public void setIdJefeAlmacen(int idJefeAlmacen) {
-        this.idJefeAlmacen = idJefeAlmacen;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,7 +59,6 @@ public class NotaSalidaEntity {
         NotaSalidaEntity that = (NotaSalidaEntity) o;
 
         if (idNotaSalida != that.idNotaSalida) return false;
-        if (idJefeAlmacen != that.idJefeAlmacen) return false;
         if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
         if (fechaSalida != null ? !fechaSalida.equals(that.fechaSalida) : that.fechaSalida != null) return false;
 
@@ -79,7 +70,6 @@ public class NotaSalidaEntity {
         int result = idNotaSalida;
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         result = 31 * result + (fechaSalida != null ? fechaSalida.hashCode() : 0);
-        result = 31 * result + idJefeAlmacen;
         return result;
     }
 

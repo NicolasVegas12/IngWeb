@@ -12,12 +12,8 @@ public class RequerimientoDetalleEntity {
     @Basic
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
-    @Basic
-    @Column(name = "idRequerimiento", nullable = false)
-    private int idRequerimiento;
-    @Basic
-    @Column(name = "idProducto", nullable = false)
-    private int idProducto;
+
+
     @ManyToOne
     @JoinColumn(name = "idRequerimiento", referencedColumnName = "idRequerimiento", nullable = false)
     private RequerimientoEntity requerimientoByIdRequerimiento;
@@ -41,21 +37,7 @@ public class RequerimientoDetalleEntity {
         this.cantidad = cantidad;
     }
 
-    public int getIdRequerimiento() {
-        return idRequerimiento;
-    }
 
-    public void setIdRequerimiento(int idRequerimiento) {
-        this.idRequerimiento = idRequerimiento;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -66,8 +48,6 @@ public class RequerimientoDetalleEntity {
 
         if (idRequerimientoDetalle != that.idRequerimientoDetalle) return false;
         if (cantidad != that.cantidad) return false;
-        if (idRequerimiento != that.idRequerimiento) return false;
-        if (idProducto != that.idProducto) return false;
 
         return true;
     }
@@ -76,8 +56,6 @@ public class RequerimientoDetalleEntity {
     public int hashCode() {
         int result = idRequerimientoDetalle;
         result = 31 * result + cantidad;
-        result = 31 * result + idRequerimiento;
-        result = 31 * result + idProducto;
         return result;
     }
 

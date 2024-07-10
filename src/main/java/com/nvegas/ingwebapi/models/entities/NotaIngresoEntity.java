@@ -18,9 +18,7 @@ public class NotaIngresoEntity {
     @Basic
     @Column(name = "fechaIngreso", nullable = false)
     private Date fechaIngreso;
-    @Basic
-    @Column(name = "idJefeAlmacen", nullable = false)
-    private int idJefeAlmacen;
+
     @OneToMany(mappedBy = "notaIngresoByIdNotaIngreso")
     private Collection<DetalleNotaIngresoEntity> detalleNotaIngresosByIdNotaIngreso;
     @ManyToOne
@@ -51,13 +49,7 @@ public class NotaIngresoEntity {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public int getIdJefeAlmacen() {
-        return idJefeAlmacen;
-    }
 
-    public void setIdJefeAlmacen(int idJefeAlmacen) {
-        this.idJefeAlmacen = idJefeAlmacen;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,7 +59,6 @@ public class NotaIngresoEntity {
         NotaIngresoEntity that = (NotaIngresoEntity) o;
 
         if (idNotaIngreso != that.idNotaIngreso) return false;
-        if (idJefeAlmacen != that.idJefeAlmacen) return false;
         if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
         if (fechaIngreso != null ? !fechaIngreso.equals(that.fechaIngreso) : that.fechaIngreso != null) return false;
 
@@ -79,7 +70,6 @@ public class NotaIngresoEntity {
         int result = idNotaIngreso;
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         result = 31 * result + (fechaIngreso != null ? fechaIngreso.hashCode() : 0);
-        result = 31 * result + idJefeAlmacen;
         return result;
     }
 

@@ -15,12 +15,7 @@ public class RequerimientoEntity {
     @Basic
     @Column(name = "fecha", nullable = false)
     private Date fecha;
-    @Basic
-    @Column(name = "idJefeAlmacen", nullable = false)
-    private int idJefeAlmacen;
-    @Basic
-    @Column(name = "idJefeCompras", nullable = false)
-    private int idJefeCompras;
+
     @ManyToOne
     @JoinColumn(name = "idJefeAlmacen", referencedColumnName = "idJefeAlmacen", nullable = false)
     private JefeAlmacenEntity jefeAlmacenByIdJefeAlmacen;
@@ -46,21 +41,7 @@ public class RequerimientoEntity {
         this.fecha = fecha;
     }
 
-    public int getIdJefeAlmacen() {
-        return idJefeAlmacen;
-    }
 
-    public void setIdJefeAlmacen(int idJefeAlmacen) {
-        this.idJefeAlmacen = idJefeAlmacen;
-    }
-
-    public int getIdJefeCompras() {
-        return idJefeCompras;
-    }
-
-    public void setIdJefeCompras(int idJefeCompras) {
-        this.idJefeCompras = idJefeCompras;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -70,8 +51,6 @@ public class RequerimientoEntity {
         RequerimientoEntity that = (RequerimientoEntity) o;
 
         if (idRequerimiento != that.idRequerimiento) return false;
-        if (idJefeAlmacen != that.idJefeAlmacen) return false;
-        if (idJefeCompras != that.idJefeCompras) return false;
         if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
 
         return true;
@@ -81,8 +60,6 @@ public class RequerimientoEntity {
     public int hashCode() {
         int result = idRequerimiento;
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
-        result = 31 * result + idJefeAlmacen;
-        result = 31 * result + idJefeCompras;
         return result;
     }
 

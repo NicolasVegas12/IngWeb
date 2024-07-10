@@ -18,9 +18,7 @@ public class BoletaEntity {
     @Basic
     @Column(name = "estado", nullable = false, length = 50)
     private String estado;
-    @Basic
-    @Column(name = "idBoletaDetalle", nullable = false)
-    private int idBoletaDetalle;
+
     @ManyToOne
     @JoinColumn(name = "idBoletaDetalle", referencedColumnName = "idBoletaDetalle", nullable = false)
     private BoletaDetalleEntity boletaDetalleByIdBoletaDetalle;
@@ -51,13 +49,7 @@ public class BoletaEntity {
         this.estado = estado;
     }
 
-    public int getIdBoletaDetalle() {
-        return idBoletaDetalle;
-    }
 
-    public void setIdBoletaDetalle(int idBoletaDetalle) {
-        this.idBoletaDetalle = idBoletaDetalle;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,7 +59,6 @@ public class BoletaEntity {
         BoletaEntity that = (BoletaEntity) o;
 
         if (idBoleta != that.idBoleta) return false;
-        if (idBoletaDetalle != that.idBoletaDetalle) return false;
         if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
 
@@ -79,7 +70,6 @@ public class BoletaEntity {
         int result = idBoleta;
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        result = 31 * result + idBoletaDetalle;
         return result;
     }
 

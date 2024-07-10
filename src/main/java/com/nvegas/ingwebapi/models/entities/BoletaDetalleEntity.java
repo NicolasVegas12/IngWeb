@@ -14,16 +14,14 @@ public class BoletaDetalleEntity {
     @Basic
     @Column(name = "monto", nullable = false, precision = 2)
     private double monto;
-    @Basic
-    @Column(name = "PRODUCTO_idProducto", nullable = false)
-    private int productoIdProducto;
+
     @Basic
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
     @OneToMany(mappedBy = "boletaDetalleByIdBoletaDetalle")
     private Collection<BoletaEntity> boletasByIdBoletaDetalle;
     @ManyToOne
-    @JoinColumn(name = "PRODUCTO_idProducto", referencedColumnName = "idProducto", nullable = false)
+    @JoinColumn(name = "idProducto", referencedColumnName = "idProducto", nullable = false)
     private ProductoEntity productoByProductoIdProducto;
 
     public int getIdBoletaDetalle() {
@@ -42,13 +40,6 @@ public class BoletaDetalleEntity {
         this.monto = monto;
     }
 
-    public int getProductoIdProducto() {
-        return productoIdProducto;
-    }
-
-    public void setProductoIdProducto(int productoIdProducto) {
-        this.productoIdProducto = productoIdProducto;
-    }
 
     public int getCantidad() {
         return cantidad;
@@ -67,7 +58,6 @@ public class BoletaDetalleEntity {
 
         if (idBoletaDetalle != that.idBoletaDetalle) return false;
         if (Double.compare(that.monto, monto) != 0) return false;
-        if (productoIdProducto != that.productoIdProducto) return false;
         if (cantidad != that.cantidad) return false;
 
         return true;
@@ -80,7 +70,6 @@ public class BoletaDetalleEntity {
         result = idBoletaDetalle;
         temp = Double.doubleToLongBits(monto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + productoIdProducto;
         result = 31 * result + cantidad;
         return result;
     }

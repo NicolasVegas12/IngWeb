@@ -23,9 +23,7 @@ public class ProveedorEntity {
     @Basic
     @Column(name = "telefono", nullable = false, length = 50)
     private String telefono;
-    @Basic
-    @Column(name = "idJefeCompras", nullable = false)
-    private int idJefeCompras;
+
     @OneToMany(mappedBy = "proveedorByIdProveedor")
     private Collection<PedidoEntity> pedidosByIdProveedor;
     @ManyToOne
@@ -72,13 +70,7 @@ public class ProveedorEntity {
         this.telefono = telefono;
     }
 
-    public int getIdJefeCompras() {
-        return idJefeCompras;
-    }
 
-    public void setIdJefeCompras(int idJefeCompras) {
-        this.idJefeCompras = idJefeCompras;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -88,7 +80,6 @@ public class ProveedorEntity {
         ProveedorEntity that = (ProveedorEntity) o;
 
         if (idProveedor != that.idProveedor) return false;
-        if (idJefeCompras != that.idJefeCompras) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (dni != null ? !dni.equals(that.dni) : that.dni != null) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
@@ -104,7 +95,6 @@ public class ProveedorEntity {
         result = 31 * result + (dni != null ? dni.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
-        result = 31 * result + idJefeCompras;
         return result;
     }
 

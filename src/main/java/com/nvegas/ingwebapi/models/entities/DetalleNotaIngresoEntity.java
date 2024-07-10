@@ -12,12 +12,7 @@ public class DetalleNotaIngresoEntity {
     @Basic
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
-    @Basic
-    @Column(name = "idNotaIngreso", nullable = false)
-    private int idNotaIngreso;
-    @Basic
-    @Column(name = "idProducto", nullable = false)
-    private int idProducto;
+
     @ManyToOne
     @JoinColumn(name = "idNotaIngreso", referencedColumnName = "idNotaIngreso", nullable = false)
     private NotaIngresoEntity notaIngresoByIdNotaIngreso;
@@ -41,21 +36,7 @@ public class DetalleNotaIngresoEntity {
         this.cantidad = cantidad;
     }
 
-    public int getIdNotaIngreso() {
-        return idNotaIngreso;
-    }
 
-    public void setIdNotaIngreso(int idNotaIngreso) {
-        this.idNotaIngreso = idNotaIngreso;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -66,8 +47,6 @@ public class DetalleNotaIngresoEntity {
 
         if (idDetalleNotaIngreso != that.idDetalleNotaIngreso) return false;
         if (cantidad != that.cantidad) return false;
-        if (idNotaIngreso != that.idNotaIngreso) return false;
-        if (idProducto != that.idProducto) return false;
 
         return true;
     }
@@ -76,8 +55,6 @@ public class DetalleNotaIngresoEntity {
     public int hashCode() {
         int result = idDetalleNotaIngreso;
         result = 31 * result + cantidad;
-        result = 31 * result + idNotaIngreso;
-        result = 31 * result + idProducto;
         return result;
     }
 

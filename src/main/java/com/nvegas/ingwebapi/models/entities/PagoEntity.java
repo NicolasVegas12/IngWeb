@@ -17,12 +17,7 @@ public class PagoEntity {
     @Basic
     @Column(name = "monto", nullable = false, precision = 2)
     private double monto;
-    @Basic
-    @Column(name = "idCdp", nullable = false)
-    private int idCdp;
-    @Basic
-    @Column(name = "idCliente", nullable = false)
-    private int idCliente;
+
     @ManyToOne
     @JoinColumn(name = "idCdp", referencedColumnName = "idCdp", nullable = false)
     private CdpEntity cdpByIdCdp;
@@ -54,21 +49,7 @@ public class PagoEntity {
         this.monto = monto;
     }
 
-    public int getIdCdp() {
-        return idCdp;
-    }
 
-    public void setIdCdp(int idCdp) {
-        this.idCdp = idCdp;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -79,8 +60,6 @@ public class PagoEntity {
 
         if (idPago != that.idPago) return false;
         if (Double.compare(that.monto, monto) != 0) return false;
-        if (idCdp != that.idCdp) return false;
-        if (idCliente != that.idCliente) return false;
         if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
 
         return true;
@@ -94,8 +73,6 @@ public class PagoEntity {
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
         temp = Double.doubleToLongBits(monto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + idCdp;
-        result = 31 * result + idCliente;
         return result;
     }
 

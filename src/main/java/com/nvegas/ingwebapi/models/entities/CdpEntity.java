@@ -18,15 +18,7 @@ public class CdpEntity {
     @Basic
     @Column(name = "monto", nullable = false, precision = 2)
     private double monto;
-    @Basic
-    @Column(name = "idBoleta", nullable = true)
-    private Integer idBoleta;
-    @Basic
-    @Column(name = "idFactura", nullable = true)
-    private Integer idFactura;
-    @Basic
-    @Column(name = "idVenta", nullable = false)
-    private int idVenta;
+
     @ManyToOne
     @JoinColumn(name = "idBoleta", referencedColumnName = "idBoleta")
     private BoletaEntity boletaByIdBoleta;
@@ -63,29 +55,7 @@ public class CdpEntity {
         this.monto = monto;
     }
 
-    public Integer getIdBoleta() {
-        return idBoleta;
-    }
 
-    public void setIdBoleta(Integer idBoleta) {
-        this.idBoleta = idBoleta;
-    }
-
-    public Integer getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(Integer idFactura) {
-        this.idFactura = idFactura;
-    }
-
-    public int getIdVenta() {
-        return idVenta;
-    }
-
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -96,10 +66,7 @@ public class CdpEntity {
 
         if (idCdp != cdpEntity.idCdp) return false;
         if (Double.compare(cdpEntity.monto, monto) != 0) return false;
-        if (idVenta != cdpEntity.idVenta) return false;
         if (fecha != null ? !fecha.equals(cdpEntity.fecha) : cdpEntity.fecha != null) return false;
-        if (idBoleta != null ? !idBoleta.equals(cdpEntity.idBoleta) : cdpEntity.idBoleta != null) return false;
-        if (idFactura != null ? !idFactura.equals(cdpEntity.idFactura) : cdpEntity.idFactura != null) return false;
 
         return true;
     }
@@ -112,9 +79,6 @@ public class CdpEntity {
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
         temp = Double.doubleToLongBits(monto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (idBoleta != null ? idBoleta.hashCode() : 0);
-        result = 31 * result + (idFactura != null ? idFactura.hashCode() : 0);
-        result = 31 * result + idVenta;
         return result;
     }
 

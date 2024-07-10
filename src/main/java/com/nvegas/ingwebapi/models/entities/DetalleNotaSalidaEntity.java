@@ -19,10 +19,10 @@ public class DetalleNotaSalidaEntity {
     @Column(name = "idProducto", nullable = false)
     private int idProducto;
     @ManyToOne
-    @JoinColumn(name = "idNotaSalida", referencedColumnName = "idNotaSalida", nullable = false)
+    @JoinColumn(name = "idNotaSalida_fk", referencedColumnName = "idNotaSalida", nullable = false)
     private NotaSalidaEntity notaSalidaByIdNotaSalida;
     @ManyToOne
-    @JoinColumn(name = "idProducto", referencedColumnName = "idProducto", nullable = false)
+    @JoinColumn(name = "idProducto_fk", referencedColumnName = "idProducto", nullable = false)
     private ProductoEntity productoByIdProducto;
 
     public int getIdDetalleNotaSalida() {
