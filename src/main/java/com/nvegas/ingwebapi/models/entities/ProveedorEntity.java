@@ -23,7 +23,7 @@ public class ProveedorEntity {
     private String dni;
     @Basic
     @Column(name = "estado", nullable = false, length = 50)
-    private String estado;
+    private Boolean estado = true;
     @Basic
     @Column(name = "telefono", nullable = false, length = 50)
     private String telefono;
@@ -58,11 +58,11 @@ public class ProveedorEntity {
         this.dni = dni;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

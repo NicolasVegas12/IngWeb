@@ -1,5 +1,9 @@
 package com.nvegas.ingwebapi.models.entities;
 
+import com.nvegas.ingwebapi.models.dto.request.jefeCompra.UpdateJefeCompraRequest;
+import com.nvegas.ingwebapi.models.dto.request.proveedor.UpdateProveedorRequest;
+import com.nvegas.ingwebapi.models.dto.response.jefeCompra.GetJefeCompraResponse;
+import com.nvegas.ingwebapi.models.dto.response.proveedor.GetProveedorResponse;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -19,7 +23,7 @@ public class JefeComprasEntity {
     private String dni;
     @Basic
     @Column(name = "estado", nullable = false, length = 50)
-    private String estado;
+    private Boolean estado = true ;
     @Basic
     @Column(name = "telefono", nullable = false, length = 50)
     private String telefono;
@@ -59,11 +63,11 @@ public class JefeComprasEntity {
         this.dni = dni;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -141,5 +145,24 @@ public class JefeComprasEntity {
 
     public void setUsuariosByIdJefeCompras(Collection<UsuariosEntity> usuariosByIdJefeCompras) {
         this.usuariosByIdJefeCompras = usuariosByIdJefeCompras;
+    }
+
+    public JefeComprasEntity update(UpdateJefeCompraRequest request){
+        setNombre(request.getNombre());
+        setDni(request.getDni());
+        setTelefono(request.getTelefono());
+        setDireccion(request.getDireccion());
+        return this;
+    }
+
+    public GetJefeCompraResponse toResponse(){
+        GetJefeCompraResponse response = new GetJefeCompraResponse();
+        response.setNombre(this.nombre);
+        response.setDni(this.dni);
+        response.setTelefono(this.telefono);
+        response.setDireccion(this.direccion);
+        response.setIdJefeCompras(this.idJefeCompras);
+
+        return response;
     }
 }

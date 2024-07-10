@@ -1,10 +1,16 @@
 package com.nvegas.ingwebapi.controllers;
 
+
+import com.nvegas.ingwebapi.models.dto.request.jefeCompra.SaveJefeCompraRequest;
+import com.nvegas.ingwebapi.models.dto.request.jefeCompra.UpdateJefeCompraRequest;
 import com.nvegas.ingwebapi.models.dto.request.vendedor.SaveVendedorRequest;
 import com.nvegas.ingwebapi.models.dto.request.vendedor.UpdateVendedorRequest;
 import com.nvegas.ingwebapi.models.dto.response.error.ErrorMessageResponse;
+import com.nvegas.ingwebapi.models.dto.response.jefeCompra.GetJefeCompraResponse;
 import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorRequest;
+import com.nvegas.ingwebapi.models.entities.JefeComprasEntity;
 import com.nvegas.ingwebapi.models.entities.VendedorEntity;
+import com.nvegas.ingwebapi.services.jefeCompras.IJefeComprasService;
 import com.nvegas.ingwebapi.services.vendedor.IVendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,19 +22,18 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path = "api/v1/vendedor")
-public class VendedorController {
-
+@RequestMapping(path = "api/v1/jefe_compra")
+public class JefeCompraController {
     @Autowired
-    IVendedorService service;
+    IJefeComprasService service;
 
     @GetMapping
-    public List<GetVendedorRequest> getList() {
+    public List<GetJefeCompraResponse> getList() {
 
-        List<GetVendedorRequest> newResponse = new ArrayList<>();
-        List<VendedorEntity> response = service.getList();
+        List<GetJefeCompraResponse> newResponse = new ArrayList<>();
+        List<JefeComprasEntity> response = service.getList();
 
-        for (VendedorEntity newItem : response) {
+        for (JefeComprasEntity newItem : response) {
             newResponse.add(newItem.toResponse());
         }
         return newResponse;
@@ -38,7 +43,7 @@ public class VendedorController {
     public ResponseEntity<Object> getDetail(@PathVariable("id") Integer id) {
 
 
-        VendedorEntity detail = service.getDetail(id);
+        JefeComprasEntity detail = service.getDetail(id);
 
         if (detail == null) {
             return new ResponseEntity<>(new ErrorMessageResponse(
@@ -52,16 +57,16 @@ public class VendedorController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody SaveVendedorRequest request) {
-        VendedorEntity saved = service.saveOrUpdate(request.toEntity());
+    public ResponseEntity<Object> create(@RequestBody SaveJefeCompraRequest request) {
+        JefeComprasEntity saved = service.saveOrUpdate(request.toEntity());
 
         return new ResponseEntity<>(saved.toResponse(), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Object> update(@RequestBody UpdateVendedorRequest request) {
+    public ResponseEntity<Object> update(@RequestBody UpdateJefeCompraRequest request) {
 
-        VendedorEntity detail = service.getDetail(request.getIdVendedor());
+        JefeComprasEntity detail = service.getDetail(request.getIdJefeCompras());
 
         if (detail == null) {
             return new ResponseEntity<>(new ErrorMessageResponse(
@@ -72,7 +77,7 @@ public class VendedorController {
             ), HttpStatus.NOT_FOUND);
         }
 
-        VendedorEntity updatedProduct = service.saveOrUpdate(detail.update(request));
+        JefeComprasEntity updatedProduct = service.saveOrUpdate(detail.update(request));
 
         return new ResponseEntity<>(updatedProduct.toResponse(), HttpStatus.OK);
 
