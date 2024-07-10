@@ -1,5 +1,7 @@
 package com.nvegas.ingwebapi.models.entities;
 
+import com.nvegas.ingwebapi.models.dto.request.product.UpdateProductRequest;
+import com.nvegas.ingwebapi.models.dto.response.product.GetProductResponse;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -16,7 +18,7 @@ public class ProductoEntity {
     private String descripcion;
     @Basic
     @Column(name = "nombre", nullable = false)
-    private int nombre;
+    private String nombre;
     @Basic
     @Column(name = "stock", nullable = false)
     private int stock;
@@ -54,11 +56,11 @@ public class ProductoEntity {
         this.descripcion = descripcion;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -98,7 +100,7 @@ public class ProductoEntity {
     public int hashCode() {
         int result = idProducto;
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
-        result = 31 * result + nombre;
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + stock;
         result = 31 * result + tipo;
         return result;
@@ -158,5 +160,25 @@ public class ProductoEntity {
 
     public void setRequerimientoDetallesByIdProducto(Collection<RequerimientoDetalleEntity> requerimientoDetallesByIdProducto) {
         this.requerimientoDetallesByIdProducto = requerimientoDetallesByIdProducto;
+    }
+
+
+    public ProductoEntity updateProduct(UpdateProductRequest request){
+        setTipo(request.getTipo());
+        setStock(request.getStock());
+        setDescripcion(request.getDescripcion());
+        setNombre(request.getNombre());
+        return this;
+    }
+
+    public GetProductResponse toResponse(){
+        GetProductResponse response = new GetProductResponse();
+        response.setDescripcion(this.descripcion);
+        response.setStock(this.stock);
+        response.setId(this.idProducto);
+        response.setTipo(this.tipo);
+        response.setNombre(this.nombre);
+
+        return response;
     }
 }
