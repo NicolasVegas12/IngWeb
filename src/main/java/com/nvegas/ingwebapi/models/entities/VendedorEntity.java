@@ -1,5 +1,9 @@
 package com.nvegas.ingwebapi.models.entities;
 
+import com.nvegas.ingwebapi.models.dto.request.proveedor.UpdateProveedorRequest;
+import com.nvegas.ingwebapi.models.dto.request.vendedor.UpdateVendedorRequest;
+import com.nvegas.ingwebapi.models.dto.response.proveedor.GetProveedorResponse;
+import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorRequest;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -118,5 +122,24 @@ public class VendedorEntity {
 
     public void setUsuariosByIdVendedor(Collection<UsuariosEntity> usuariosByIdVendedor) {
         this.usuariosByIdVendedor = usuariosByIdVendedor;
+    }
+
+    public VendedorEntity update(UpdateVendedorRequest request){
+        setNombre(request.getNombre());
+        setDireccion(request.getDireccion());
+        setEmail(request.getEmail());
+        setTelefono(request.getTelefono());
+        return this;
+    }
+
+    public GetVendedorRequest toResponse(){
+        GetVendedorRequest response = new GetVendedorRequest();
+        response.setNombre(this.nombre);
+        response.setDireccion(this.direccion);
+        response.setEmail(this.email);
+        response.setTelefono(this.telefono);
+        response.setIdVendedor(this.idVendedor);
+
+        return response;
     }
 }

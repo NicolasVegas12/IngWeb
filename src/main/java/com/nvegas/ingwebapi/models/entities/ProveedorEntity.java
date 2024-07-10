@@ -1,5 +1,9 @@
 package com.nvegas.ingwebapi.models.entities;
 
+import com.nvegas.ingwebapi.models.dto.request.product.UpdateProductRequest;
+import com.nvegas.ingwebapi.models.dto.request.proveedor.UpdateProveedorRequest;
+import com.nvegas.ingwebapi.models.dto.response.product.GetProductResponse;
+import com.nvegas.ingwebapi.models.dto.response.proveedor.GetProveedorResponse;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -112,5 +116,22 @@ public class ProveedorEntity {
 
     public void setJefeComprasByIdJefeCompras(JefeComprasEntity jefeComprasByIdJefeCompras) {
         this.jefeComprasByIdJefeCompras = jefeComprasByIdJefeCompras;
+    }
+
+    public ProveedorEntity update(UpdateProveedorRequest request){
+        setNombre(request.getNombre());
+        setDni(request.getDni());
+        setTelefono(request.getTelefono());
+        return this;
+    }
+
+    public GetProveedorResponse toResponse(){
+        GetProveedorResponse response = new GetProveedorResponse();
+        response.setNombre(this.nombre);
+        response.setDni(this.dni);
+        response.setTelefono(this.telefono);
+        response.setIdProveedor(this.idProveedor);
+
+        return response;
     }
 }
