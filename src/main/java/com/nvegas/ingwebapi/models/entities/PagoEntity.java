@@ -1,11 +1,15 @@
 package com.nvegas.ingwebapi.models.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "pago", schema = "chikitinesbd", catalog = "")
+@Table(name = "pago", schema = "chikitinesbd")
 public class PagoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,74 +25,7 @@ public class PagoEntity {
     @ManyToOne
     @JoinColumn(name = "idCdp", referencedColumnName = "idCdp", nullable = false)
     private CdpEntity cdpByIdCdp;
-    @ManyToOne
-    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente", nullable = false)
-    private ClienteEntity clienteByIdCliente;
-
-    public int getIdPago() {
-        return idPago;
-    }
-
-    public void setIdPago(int idPago) {
-        this.idPago = idPago;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
 
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PagoEntity that = (PagoEntity) o;
-
-        if (idPago != that.idPago) return false;
-        if (Double.compare(that.monto, monto) != 0) return false;
-        if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = idPago;
-        result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
-        temp = Double.doubleToLongBits(monto);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    public CdpEntity getCdpByIdCdp() {
-        return cdpByIdCdp;
-    }
-
-    public void setCdpByIdCdp(CdpEntity cdpByIdCdp) {
-        this.cdpByIdCdp = cdpByIdCdp;
-    }
-
-    public ClienteEntity getClienteByIdCliente() {
-        return clienteByIdCliente;
-    }
-
-    public void setClienteByIdCliente(ClienteEntity clienteByIdCliente) {
-        this.clienteByIdCliente = clienteByIdCliente;
-    }
 }

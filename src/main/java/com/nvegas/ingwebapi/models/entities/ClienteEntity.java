@@ -1,11 +1,15 @@
 package com.nvegas.ingwebapi.models.entities;
 
+import com.nvegas.ingwebapi.models.dto.response.cliente.GetClientResponse;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Collection;
-
+@Getter
+@Setter
 @Entity
-@Table(name = "cliente", schema = "chikitinesbd", catalog = "")
+@Table(name = "cliente", schema = "chikitinesbd")
 public class ClienteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -27,123 +31,33 @@ public class ClienteEntity {
     @ManyToOne
     @JoinColumn(name = "idVendedor", referencedColumnName = "idVendedor", nullable = false)
     private VendedorEntity vendedorByIdVendedor;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idNatural", referencedColumnName = "idNatural")
     private NaturalEntity naturalByIdNatural;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idJuridico", referencedColumnName = "idJuridico")
     private JuridicoEntity juridicoByIdJuridico;
     @OneToMany(mappedBy = "clienteByIdCliente")
-    private Collection<PagoEntity> pagosByIdCliente;
+    private Collection<VentaEntity> comprasByIdCliente;
     @OneToMany(mappedBy = "clienteByIdCliente")
     private Collection<PedidoEntity> pedidosByIdCliente;
 
-    public int getIdCliente() {
-        return idCliente;
+
+    public GetClientResponse toResponse(){
+        GetClientResponse response = new  GetClientResponse();
+        response.setIdCliente(this.getIdCliente());
+        response.setEmail(this.getEmail());
+        response.setDireccion(this.getDireccion());
+        response.setTelefono(this.getTelefono());
+        response.setVendedor(this.getVendedorByIdVendedor().toResponse());
+        response.setNombreCliente(this.getNombreCliente());
+        if(this.juridicoByIdJuridico != null){
+            response.setClienteJuridico(this.juridicoByIdJuridico.toResponse());
+        }
+        if(this.naturalByIdNatural!=null){
+            response.setClienteNatural(this.naturalByIdNatural.toResponse());
+        }
+        return response;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ClienteEntity that = (ClienteEntity) o;
-
-        if (idCliente != that.idCliente) return false;
-        if (nombreCliente != null ? !nombreCliente.equals(that.nombreCliente) : that.nombreCliente != null)
-            return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null) return false;
-        if (direccion != null ? !direccion.equals(that.direccion) : that.direccion != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idCliente;
-        result = 31 * result + (nombreCliente != null ? nombreCliente.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
-        result = 31 * result + (direccion != null ? direccion.hashCode() : 0);
-        return result;
-    }
-
-    public VendedorEntity getVendedorByIdVendedor() {
-        return vendedorByIdVendedor;
-    }
-
-    public void setVendedorByIdVendedor(VendedorEntity vendedorByIdVendedor) {
-        this.vendedorByIdVendedor = vendedorByIdVendedor;
-    }
-
-    public NaturalEntity getNaturalByIdNatural() {
-        return naturalByIdNatural;
-    }
-
-    public void setNaturalByIdNatural(NaturalEntity naturalByIdNatural) {
-        this.naturalByIdNatural = naturalByIdNatural;
-    }
-
-    public JuridicoEntity getJuridicoByIdJuridico() {
-        return juridicoByIdJuridico;
-    }
-
-    public void setJuridicoByIdJuridico(JuridicoEntity juridicoByIdJuridico) {
-        this.juridicoByIdJuridico = juridicoByIdJuridico;
-    }
-
-    public Collection<PagoEntity> getPagosByIdCliente() {
-        return pagosByIdCliente;
-    }
-
-    public void setPagosByIdCliente(Collection<PagoEntity> pagosByIdCliente) {
-        this.pagosByIdCliente = pagosByIdCliente;
-    }
-
-    public Collection<PedidoEntity> getPedidosByIdCliente() {
-        return pedidosByIdCliente;
-    }
-
-    public void setPedidosByIdCliente(Collection<PedidoEntity> pedidosByIdCliente) {
-        this.pedidosByIdCliente = pedidosByIdCliente;
-    }
 }
