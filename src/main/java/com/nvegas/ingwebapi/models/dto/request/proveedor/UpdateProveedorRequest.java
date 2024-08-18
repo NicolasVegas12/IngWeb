@@ -1,7 +1,6 @@
 package com.nvegas.ingwebapi.models.dto.request.proveedor;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
+
 import lombok.Getter;
 import lombok.Setter;
 

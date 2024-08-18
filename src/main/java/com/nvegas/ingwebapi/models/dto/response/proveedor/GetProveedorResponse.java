@@ -19,4 +19,9 @@ public class GetProveedorResponse {
     @Getter
     @Setter
     private String telefono;
+
+
+    @Getter
+    @Setter
+    private Integer idJefeCompras;
 }

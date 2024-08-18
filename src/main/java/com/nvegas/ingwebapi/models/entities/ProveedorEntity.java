@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "proveedor", schema = "chikitinesbd", catalog = "")
+@Table(name = "proveedor", schema = "chikitinesbd")
 public class ProveedorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -131,7 +131,7 @@ public class ProveedorEntity {
         response.setDni(this.dni);
         response.setTelefono(this.telefono);
         response.setIdProveedor(this.idProveedor);
-
+        response.setIdJefeCompras(this.jefeComprasByIdJefeCompras.getIdJefeCompras());
         return response;
     }
 }

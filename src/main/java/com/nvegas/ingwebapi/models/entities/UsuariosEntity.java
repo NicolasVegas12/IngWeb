@@ -1,116 +1,77 @@
 package com.nvegas.ingwebapi.models.entities;
 
+import com.nvegas.ingwebapi.models.dto.request.usuario.UpdateUsuarioRequest;
+import com.nvegas.ingwebapi.models.dto.response.usuario.GetUsuarioResponse;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "usuarios", schema = "chikitinesbd", catalog = "")
+@Table(name = "usuarios", schema = "chikitinesbd")
 public class UsuariosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "idUsuario", nullable = false)
+    @Getter
+    @Setter
     private int idUsuario;
     @Basic
     @Column(name = "nombreUsuario", nullable = false, length = 50)
+    @Getter
+    @Setter
     private String nombreUsuario;
     @Basic
     @Column(name = "correo", nullable = false, length = 50)
+    @Getter
+    @Setter
     private String correo;
     @Basic
     @Column(name = "contrasena", nullable = false, length = 50)
+    @Getter
+    @Setter
     private String contrasena;
-
 
 
     @ManyToOne
     @JoinColumn(name = "idJefeAlmacen", referencedColumnName = "idJefeAlmacen")
+    @Getter
+    @Setter
     private JefeAlmacenEntity jefeAlmacenByIdJefeAlmacen;
     @ManyToOne
     @JoinColumn(name = "idJefeCompras", referencedColumnName = "idJefeCompras")
+    @Getter
+    @Setter
     private JefeComprasEntity jefeComprasByIdJefeCompras;
     @ManyToOne
     @JoinColumn(name = "idVendedor", referencedColumnName = "idVendedor")
+    @Getter
+    @Setter
     private VendedorEntity vendedorByIdVendedor;
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public UsuariosEntity toUpdate(UpdateUsuarioRequest request) {
+        setCorreo(request.getCorreo());
+        setNombreUsuario(request.getNombreUsuario());
+        setContrasena(request.getContrasena());
+        return this;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public GetUsuarioResponse toResponse() {
+        GetUsuarioResponse response = new GetUsuarioResponse();
+        response.setIdUsuario(this.idUsuario);
+        response.setCorreo(this.correo);
+        response.setContrasena(this.contrasena);
+        response.setNombreUsuario(this.nombreUsuario);
+        if (this.jefeComprasByIdJefeCompras != null) {
+            response.setIdJefeCompras(this.jefeComprasByIdJefeCompras.getIdJefeCompras());
+        }
+        if(this.jefeAlmacenByIdJefeAlmacen!=null){
+            response.setIdJefeAlmacen(this.jefeAlmacenByIdJefeAlmacen.getIdJefeAlmacen());
+        }
+        if(this.vendedorByIdVendedor !=null){
+            response.setIdVendedor(this.vendedorByIdVendedor.getIdVendedor());
+        }
+        return response;
     }
 
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UsuariosEntity that = (UsuariosEntity) o;
-
-        if (idUsuario != that.idUsuario) return false;
-        if (nombreUsuario != null ? !nombreUsuario.equals(that.nombreUsuario) : that.nombreUsuario != null)
-            return false;
-        if (correo != null ? !correo.equals(that.correo) : that.correo != null) return false;
-        if (contrasena != null ? !contrasena.equals(that.contrasena) : that.contrasena != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idUsuario;
-        result = 31 * result + (nombreUsuario != null ? nombreUsuario.hashCode() : 0);
-        result = 31 * result + (correo != null ? correo.hashCode() : 0);
-        result = 31 * result + (contrasena != null ? contrasena.hashCode() : 0);
-        return result;
-    }
-
-    public JefeAlmacenEntity getJefeAlmacenByIdJefeAlmacen() {
-        return jefeAlmacenByIdJefeAlmacen;
-    }
-
-    public void setJefeAlmacenByIdJefeAlmacen(JefeAlmacenEntity jefeAlmacenByIdJefeAlmacen) {
-        this.jefeAlmacenByIdJefeAlmacen = jefeAlmacenByIdJefeAlmacen;
-    }
-
-    public JefeComprasEntity getJefeComprasByIdJefeCompras() {
-        return jefeComprasByIdJefeCompras;
-    }
-
-    public void setJefeComprasByIdJefeCompras(JefeComprasEntity jefeComprasByIdJefeCompras) {
-        this.jefeComprasByIdJefeCompras = jefeComprasByIdJefeCompras;
-    }
-
-    public VendedorEntity getVendedorByIdVendedor() {
-        return vendedorByIdVendedor;
-    }
-
-    public void setVendedorByIdVendedor(VendedorEntity vendedorByIdVendedor) {
-        this.vendedorByIdVendedor = vendedorByIdVendedor;
-    }
 }

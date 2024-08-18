@@ -1,7 +1,7 @@
-package com.nvegas.ingwebapi.services.jefeCompras;
+package com.nvegas.ingwebapi.services.usuario;
 
-import com.nvegas.ingwebapi.models.entities.JefeComprasEntity;
-import com.nvegas.ingwebapi.repository.IJefeComprasRepository;
+import com.nvegas.ingwebapi.models.entities.UsuariosEntity;
+import com.nvegas.ingwebapi.repository.IUsuarioRepository;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,23 +11,24 @@ import java.util.List;
 
 @Service
 @Transactional
-public class JefeComprasService implements IJefeComprasService {
+public class UsuarioService implements IUsuarioService {
+
     @Autowired
-    IJefeComprasRepository repository;
+    IUsuarioRepository repository;
 
     @Override
-    public List<JefeComprasEntity> getList() {
+    public List<UsuariosEntity> getList() {
         return repository.findAll();
     }
 
     @Override
     @Nullable
-    public JefeComprasEntity getDetail(Integer id) {
+    public UsuariosEntity getDetail(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public JefeComprasEntity saveOrUpdate(JefeComprasEntity request) {
+    public UsuariosEntity saveOrUpdate(UsuariosEntity request) {
         return repository.save(request);
     }
 
@@ -39,4 +40,12 @@ public class JefeComprasService implements IJefeComprasService {
         repository.deleteById(id);
         return true;
     }
+
+    @Override
+    @Nullable
+    public UsuariosEntity login(String mail, String password) {
+        return repository.getUsuariosEntitiesByCorreoAndContrasena(mail, password);
+    }
+
+
 }
