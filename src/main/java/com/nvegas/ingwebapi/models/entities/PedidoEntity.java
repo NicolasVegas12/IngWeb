@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.Collection;
 
 @Entity
-@Table(name = "pedido", schema = "chikitinesbd", catalog = "")
+@Table(name = "pedido", schema = "chikitinesbd", )
 public class PedidoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -16,7 +16,7 @@ public class PedidoEntity {
     @Column(name = "fecha", nullable = false)
     private Date fecha;
 
-    @OneToMany(mappedBy = "pedidoByPedidoIdPedido")
+    @OneToMany(mappedBy = "pedidoByIdPedido")
     private Collection<DetallePedidoEntity> detallePedidosByIdPedido;
     @ManyToOne
     @JoinColumn(name = "idProveedor", referencedColumnName = "idProveedor", nullable = false)
