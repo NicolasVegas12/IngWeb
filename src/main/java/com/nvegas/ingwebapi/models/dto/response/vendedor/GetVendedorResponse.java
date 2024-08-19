@@ -3,7 +3,7 @@ package com.nvegas.ingwebapi.models.dto.response.vendedor;
 import lombok.Getter;
 import lombok.Setter;
 
-public class GetVendedorRequest {
+public class GetVendedorResponse {
 
 
 

@@ -26,6 +26,9 @@ public class SaveProductRequest {
     @Getter
     @Setter
     private int tipo;
+    @Getter
+    @Setter
+    private double precio;
 
     public ProductoEntity toEntity() {
         ProductoEntity entity = new ProductoEntity();
@@ -33,6 +36,7 @@ public class SaveProductRequest {
         entity.setNombre(this.getNombre());
         entity.setStock(this.getStock());
         entity.setTipo(this.getTipo());
+        entity.setPrecio(this.getPrecio());
         return entity;
     }
 }

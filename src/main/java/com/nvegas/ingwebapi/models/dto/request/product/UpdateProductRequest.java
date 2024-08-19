@@ -31,5 +31,9 @@ public class UpdateProductRequest {
     @Setter
     private int tipo;
 
+    @Getter
+    @Setter
+    private double precio;
+
 
 }

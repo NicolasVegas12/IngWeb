@@ -3,7 +3,7 @@ package com.nvegas.ingwebapi.controllers;
 import com.nvegas.ingwebapi.models.dto.request.vendedor.SaveVendedorRequest;
 import com.nvegas.ingwebapi.models.dto.request.vendedor.UpdateVendedorRequest;
 import com.nvegas.ingwebapi.models.dto.response.error.ErrorMessageResponse;
-import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorRequest;
+import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorResponse;
 import com.nvegas.ingwebapi.models.entities.VendedorEntity;
 import com.nvegas.ingwebapi.services.vendedor.IVendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class VendedorController {
     IVendedorService service;
 
     @GetMapping
-    public List<GetVendedorRequest> getList() {
+    public List<GetVendedorResponse> getList() {
 
-        List<GetVendedorRequest> newResponse = new ArrayList<>();
+        List<GetVendedorResponse> newResponse = new ArrayList<>();
         List<VendedorEntity> response = service.getList();
 
         for (VendedorEntity newItem : response) {

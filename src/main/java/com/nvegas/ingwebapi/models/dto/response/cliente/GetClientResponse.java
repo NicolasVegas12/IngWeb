@@ -1,6 +1,6 @@
 package com.nvegas.ingwebapi.models.dto.response.cliente;
 
-import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorRequest;
+import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +18,7 @@ public class GetClientResponse {
     private String direccion;
 
 
-    private GetVendedorRequest vendedor;
+    private GetVendedorResponse vendedor;
 
     private GetNaturalClientResponse clienteNatural;
 

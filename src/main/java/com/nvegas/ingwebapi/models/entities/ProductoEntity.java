@@ -29,6 +29,11 @@ public class ProductoEntity {
     @Basic
     @Column(name = "tipo", nullable = false)
     private int tipo;
+
+    @Basic
+    @Column(name = "precio", nullable = false)
+    private double precio;
+
     @OneToMany(mappedBy = "productoByIdProducto")
     private Collection<BoletaDetalleEntity> boletaDetallesByIdProducto;
     @OneToMany(mappedBy = "productoByIdProducto")
@@ -51,6 +56,7 @@ public class ProductoEntity {
         setStock(request.getStock());
         setDescripcion(request.getDescripcion());
         setNombre(request.getNombre());
+        setPrecio(request.getPrecio());
         return this;
     }
 
@@ -61,7 +67,7 @@ public class ProductoEntity {
         response.setId(this.idProducto);
         response.setTipo(this.tipo);
         response.setNombre(this.nombre);
-
+        response.setPrecio(this.precio);
         return response;
     }
 }

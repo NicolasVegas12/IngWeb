@@ -22,5 +22,9 @@ public class GetProductResponse {
     @Setter
     private int tipo;
 
+    @Getter
+    @Setter
+    private double precio;
+
 
 }

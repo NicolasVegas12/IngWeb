@@ -1,9 +1,7 @@
 package com.nvegas.ingwebapi.models.entities;
 
-import com.nvegas.ingwebapi.models.dto.request.proveedor.UpdateProveedorRequest;
 import com.nvegas.ingwebapi.models.dto.request.vendedor.UpdateVendedorRequest;
-import com.nvegas.ingwebapi.models.dto.response.proveedor.GetProveedorResponse;
-import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorRequest;
+import com.nvegas.ingwebapi.models.dto.response.vendedor.GetVendedorResponse;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,8 +48,8 @@ public class VendedorEntity {
         return this;
     }
 
-    public GetVendedorRequest toResponse(){
-        GetVendedorRequest response = new GetVendedorRequest();
+    public GetVendedorResponse toResponse(){
+        GetVendedorResponse response = new GetVendedorResponse();
         response.setNombre(this.nombre);
         response.setDireccion(this.direccion);
         response.setEmail(this.email);
